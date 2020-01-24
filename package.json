@@ -8,9 +8,9 @@
     "start": "next start"
   },
   "dependencies": {
+    "@fullhuman/postcss-purgecss": "^2.0.5",
     "next": "^9.2.1-canary.11",
     "postcss-preset-env": "^6.7.0",
-    "purgecss": "^2.0.5",
     "react": "16.12.0",
     "react-dom": "16.12.0",
     "tailwindcss": "^1.2.0-canary.5"

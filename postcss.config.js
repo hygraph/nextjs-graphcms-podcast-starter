@@ -3,7 +3,7 @@ module.exports = {
     "tailwindcss",
     process.env.NODE_ENV === "production"
       ? [
-          "purgecss",
+          "@fullhuman/postcss-purgecss",
           {
             content: [
               "./pages/**/*.{js,jsx,ts,tsx}",
