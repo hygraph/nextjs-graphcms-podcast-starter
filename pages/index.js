@@ -1,39 +1,23 @@
-import React from 'react'
-import Head from 'next/head'
-import Nav from '../components/nav'
+import React from "react";
+import Head from "next/head";
 
 const Home = () => (
-  <div>
+  <div className="container">
     <Head>
       <title>Home</title>
       <link rel="icon" href="/favicon.ico" />
     </Head>
 
-    <Nav />
-
-    <div className="hero">
-      <h1 className="title">Welcome to Next.js!</h1>
-      <p className="description">
-        To get started, edit <code>pages/index.js</code> and save to reload.
-      </p>
-
-      <div className="row">
-        <a href="https://nextjs.org/docs" className="card">
-          <h3>Documentation &rarr;</h3>
-          <p>Learn more about Next.js in the documentation.</p>
-        </a>
-        <a href="https://nextjs.org/learn" className="card">
-          <h3>Next.js Learn &rarr;</h3>
-          <p>Learn about Next.js by following an interactive tutorial!</p>
-        </a>
-        <a
-          href="https://github.com/zeit/next.js/tree/master/examples"
-          className="card"
-        >
-          <h3>Examples &rarr;</h3>
-          <p>Find other example boilerplates on the Next.js GitHub.</p>
-        </a>
+    <div className="flex">
+      <div className="w-1/2">
+        <p className="uppercase text-sm mb-2 py-4 px-2 rounded-full bg-teal-300 inline-block">
+          It's time for
+        </p>
+        <h1 className="text-5xl text-gray-100 font-bold font-serif">
+          A little Content Jazz Session
+        </h1>
       </div>
+      <div className="w-1/2"></div>
     </div>
 
     <style jsx>{`
@@ -83,6 +67,6 @@ const Home = () => (
       }
     `}</style>
   </div>
-)
+);
 
-export default Home
+export default Home;
