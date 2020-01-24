@@ -8,7 +8,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "next": "9.2.1",
+    "next": "^9.2.1-canary.11",
     "postcss-preset-env": "^6.7.0",
     "purgecss": "^2.0.5",
     "react": "16.12.0",
