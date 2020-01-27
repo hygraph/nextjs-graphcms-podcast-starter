@@ -1,72 +1,49 @@
 import React from "react";
 import Head from "next/head";
+import Halftone from "../components/Halftone";
 
-const Home = () => (
-  <div className="container">
-    <Head>
-      <title>Home</title>
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
+const Home = () => {
+  return (
+    <div>
+      <div className="container relative z-10">
+        <Head>
+          <title>Home</title>
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-    <div className="flex">
-      <div className="w-1/2">
-        <p className="uppercase text-sm mb-2 py-4 px-2 rounded-full bg-teal-300 inline-block">
-          It's time for
-        </p>
-        <h1 className="text-5xl text-gray-100 font-bold font-serif">
-          A little Content Jazz Session
-        </h1>
+        <div className="flex">
+          <div className="w-2/6 flex flex-wrap content-center">
+            <p className="uppercase text-sm mb-2 inline-block text-teal-400 font-bold tracking-widest">
+              It's time for
+            </p>
+            <h1 className="text-5xl text-gray-300 mb-6 font-bold font-serif tracking-wider leading-tight">
+              A little Content Jazz Session
+            </h1>
+            <p className="text-gray-100 leading-normal tracking-wide text-xl">
+              TGM is a podcast about meaning, disguised as a podcast about
+              entrepreneurship. It’s a bright-eyed and sweary look at what it
+              takes to make a living on the internet (and still sleep at night).
+            </p>
+          </div>
+          <div className="w-4/6 flex justify-end">
+            <div className="w-9/12 clearfix bg-darkgray-800 shadow-xl rounded-sm">
+              <span className="h-0 float -ml-px w-px block pt-full" />
+            </div>
+          </div>
+        </div>
+        <div></div>
       </div>
-      <div className="w-1/2"></div>
+      <div className="flex -mt-20 overflow-hidden text-darkgray-800 w-full">
+        <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
+        <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
+        <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
+      </div>
     </div>
+  );
+};
 
-    <style jsx>{`
-      .hero {
-        width: 100%;
-        color: #333;
-      }
-      .title {
-        margin: 0;
-        width: 100%;
-        padding-top: 80px;
-        line-height: 1.15;
-        font-size: 48px;
-      }
-      .title,
-      .description {
-        text-align: center;
-      }
-      .row {
-        max-width: 880px;
-        margin: 80px auto 40px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-      }
-      .card {
-        padding: 18px 18px 24px;
-        width: 220px;
-        text-align: left;
-        text-decoration: none;
-        color: #434343;
-        border: 1px solid #9b9b9b;
-      }
-      .card:hover {
-        border-color: #067df7;
-      }
-      .card h3 {
-        margin: 0;
-        color: #067df7;
-        font-size: 18px;
-      }
-      .card p {
-        margin: 0;
-        padding: 12px 0 0;
-        font-size: 13px;
-        color: #333;
-      }
-    `}</style>
-  </div>
-);
+Home.getInitialProps = async () => {
+  return {};
+};
 
 export default Home;

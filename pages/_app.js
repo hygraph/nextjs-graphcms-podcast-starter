@@ -3,7 +3,8 @@ import "../styles/main.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="bg-black min-h-screen overflow-hidden">
+    <div className="bg-darkgray-700 min-h-screen overflow-hidden">
+      <div className="w-full h-2 main-gradient mb-4" />
       <Nav />
       <Component {...pageProps} />
     </div>
