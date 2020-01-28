@@ -1,6 +1,8 @@
 import React from "react";
 import Head from "next/head";
 import Episodes from "../components/Episodes";
+import FeedBadges from "../components/FeedBadges";
+import HeroImage from "../components/HeroImage";
 
 const Home = ({ feeds, episodes }) => {
   return (
@@ -8,7 +10,6 @@ const Home = ({ feeds, episodes }) => {
       <div className="container relative z-10">
         <Head>
           <title>Home</title>
-          <link rel="icon" href="/favicon.ico" />
         </Head>
 
         <div className="flex">
@@ -24,22 +25,9 @@ const Home = ({ feeds, episodes }) => {
               entrepreneurship. It’s a bright-eyed and sweary look at what it
               takes to make a living on the internet (and still sleep at night).
             </p>
-            <div className="flex flex-wrap -mx-2 justify-start">
-              {feeds &&
-                feeds.map((feed, index) => {
-                  return (
-                    <a href={feed.feed} className="m-2" key={index}>
-                      <img src={feed.badge} />
-                    </a>
-                  );
-                })}
-            </div>
+            <FeedBadges feeds={feeds} />
           </div>
-          <div className="w-4/6 flex justify-end">
-            <div className="w-9/12 bg-darkgray-800 shadow-xl rounded-sm">
-              <span className="h-0 float -ml-px w-px block pt-full" />
-            </div>
-          </div>
+          <HeroImage />
         </div>
         <div></div>
       </div>
@@ -57,7 +45,7 @@ Home.getInitialProps = async () => {
             url: "https://media.graphcms.com/meHpx8fTQWID8zd6aFvn"
           },
           episodeNumber: 1,
-          title: "How the rain in Spain, stays **mainly** on the plain.",
+          title: "# How the rain in Spain, stays **mainly** on the plain.",
           description:
             "An interesting development has occurred in recent weeks, where the rain that falls in Spain is mostly on the plain. But what does that mean for the people who, you know, *actually live there?* We go in-depth with our expert on all things rain **AND** Spain. This will be a good one.",
           hosts: [
@@ -100,6 +88,10 @@ Home.getInitialProps = async () => {
 
   return {
     episodes: [
+      ...data.episodes,
+      ...data.episodes,
+      ...data.episodes,
+      ...data.episodes,
       ...data.episodes,
       ...data.episodes,
       ...data.episodes,

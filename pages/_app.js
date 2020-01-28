@@ -1,12 +1,17 @@
+import Head from "next/head";
 import Nav from "../components/nav";
+import Footer from "../components/Footer";
 import "../styles/main.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="bg-darkgray-700 min-h-screen overflow-hidden">
-      <div className="w-full h-2 main-gradient mb-4" />
+    <div className="bg-darkgray-700 min-h-screen">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <Nav />
       <Component {...pageProps} />
+      <Footer />
     </div>
   );
 }
