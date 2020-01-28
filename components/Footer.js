@@ -3,7 +3,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div className="text-gray-200 py-12">
-      <div className="container flex flex-wrap">
+      <div className="container flex flex-wrap px-4 md:px-0">
         <p>Powered by GraphCMS GmbH</p>
         <ul className="inline-flex ml-auto">
           <li className="my-1">

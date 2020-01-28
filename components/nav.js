@@ -14,8 +14,8 @@ const links = [
 const Nav = () => (
   <div className="">
     <div className="w-full h-2 main-gradient mb-4" />
-    <nav className="container flex flex-wrap py-6 mb-4">
-      <div className="sticky top-0">
+    <nav className="container flex flex-wrap px-4 md:px-0 py-6 mb-4">
+      <div className="w-full md:w-auto">
         <h1 className="font-bold text-white text-lg uppercase tracking-widest">
           Content Jazz
         </h1>
@@ -23,16 +23,16 @@ const Nav = () => (
           by GraphCMS GmbH
         </p>
       </div>
-      <div className="ml-auto w-1/2">
+      <div className="lg:ml-auto lg:w-1/2">
         <ul className="flex justify-between text-gray-200">
           {links.map(({ key, href, label }) => (
-            <li key={key}>
+            <li key={key} className="w-full lg:w-auto">
               <Link href={href}>
                 <a className="text-current">{label}</a>
               </Link>
             </li>
           ))}
-          <li>
+          <li className="block lg:inline-block w-full lg:w-auto">
             <Link href="/">
               <a className="px-6 py-4 text-current rounded-full bg-darkgray-900 hover:shadow-xl shadow-lg transform animate hover:-translate-x-2">
                 Subscribe Now

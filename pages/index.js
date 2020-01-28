@@ -7,13 +7,13 @@ import HeroImage from "../components/HeroImage";
 const Home = ({ feeds, episodes }) => {
   return (
     <div>
-      <div className="container relative z-10">
+      <div className="container relative z-10 px-4 md:px-0">
         <Head>
           <title>Home</title>
         </Head>
 
-        <div className="flex">
-          <div className="w-2/6 flex flex-wrap content-center">
+        <div className="flex flex-wrap">
+          <div className="w-full md:w-2/6 flex flex-wrap content-center">
             <p className="uppercase text-sm mb-2 inline-block text-teal-400 font-bold tracking-widest">
               It's time for
             </p>

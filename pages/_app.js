@@ -5,7 +5,7 @@ import "../styles/main.css";
 
 function MyApp({ Component, pageProps }) {
   return (
-    <div className="bg-darkgray-700 min-h-screen">
+    <div className="bg-darkgray-700 min-h-screen w-screen overflow-hidden">
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
