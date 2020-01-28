@@ -1,56 +1,48 @@
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
 const links = [
-  { href: 'https://zeit.co/now', label: 'ZEIT' },
-  { href: 'https://github.com/zeit/next.js', label: 'GitHub' },
+  { href: "/", label: "Episodes" },
+  { href: "/", label: "About" },
+  { href: "/", label: "Newsletter" },
+  { href: "/", label: "Resources" }
 ].map(link => ({
   ...link,
-  key: `nav-link-${link.href}-${link.label}`,
-}))
+  key: `nav-link-${link.href}-${link.label}`
+}));
 
 const Nav = () => (
-  <nav>
-    <ul>
-      <li>
-        <Link href="/">
-          <a>Home</a>
-        </Link>
-      </li>
-      {links.map(({ key, href, label }) => (
-        <li key={key}>
-          <a href={href}>{label}</a>
-        </li>
-      ))}
-    </ul>
+  <div className="">
+    <div className="w-full h-2 main-gradient mb-4" />
+    <nav className="container flex flex-wrap px-4 md:px-0 py-6 mb-4">
+      <div className="w-full md:w-auto">
+        <h1 className="font-bold text-white text-lg uppercase tracking-widest">
+          Content Jazz
+        </h1>
+        <p className="text-gray-300 italic text-sm tracking-wide">
+          by GraphCMS GmbH
+        </p>
+      </div>
+      <div className="lg:ml-auto lg:w-1/2">
+        <ul className="flex justify-between text-gray-200">
+          {links.map(({ key, href, label }) => (
+            <li key={key} className="w-full lg:w-auto">
+              <Link href={href}>
+                <a className="text-current">{label}</a>
+              </Link>
+            </li>
+          ))}
+          <li className="block lg:inline-block w-full lg:w-auto">
+            <Link href="/">
+              <a className="px-6 py-4 text-current rounded-full bg-darkgray-900 hover:shadow-xl shadow-lg transform animate hover:-translate-x-2">
+                Subscribe Now
+              </a>
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+);
 
-    <style jsx>{`
-      :global(body) {
-        margin: 0;
-        font-family: -apple-system, BlinkMacSystemFont, Avenir Next, Avenir,
-          Helvetica, sans-serif;
-      }
-      nav {
-        text-align: center;
-      }
-      ul {
-        display: flex;
-        justify-content: space-between;
-      }
-      nav > ul {
-        padding: 4px 16px;
-      }
-      li {
-        display: flex;
-        padding: 6px 8px;
-      }
-      a {
-        color: #067df7;
-        text-decoration: none;
-        font-size: 13px;
-      }
-    `}</style>
-  </nav>
-)
-
-export default Nav
+export default Nav;
