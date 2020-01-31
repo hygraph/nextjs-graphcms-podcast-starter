@@ -78,7 +78,8 @@ Home.getInitialProps = async () => {
             }
           ],
           audioFile: {
-            url: "https://media.graphcms.com/G8maGcTQQBWgiCKSkd6z"
+            url: "https://media.graphcms.com/G8maGcTQQBWgiCKSkd6z",
+            mimeType: "audio/mp3"
           }
         }
       ]

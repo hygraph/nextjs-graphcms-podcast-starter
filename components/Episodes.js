@@ -18,7 +18,7 @@ const Episodes = ({ episodes }) => {
     episode.episodeNumber = index + 1;
     return <EpisodeCard episode={episode} key={index} />;
   });
-  episodeList.splice(2, 0, <SponsorCard />);
+  episodeList.splice(2, 0, <SponsorCard key="wack" />);
 
   return (
     <div>

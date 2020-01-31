@@ -51,8 +51,8 @@ const EpisodeCard = ({ episode }) => {
                   width="12"
                   className="inline-block mr-2"
                 />
-                {episode.tags.map(tag => (
-                  <span>{tag.name},</span>
+                {episode.tags.map((tag, key) => (
+                  <span key={key}>{tag.name},</span>
                 ))}
               </p>
               <p>
