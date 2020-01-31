@@ -1,16 +1,25 @@
+import { useEffect, useReducer } from "react";
 import Head from "next/head";
 import Nav from "../components/nav";
 import Footer from "../components/Footer";
 import "../styles/main.css";
+import { PlayerProvider, initialState, reducer } from "../context/AudioPlayer";
+import AudioPlayer from "../components/AudioPlayer";
 
 function MyApp({ Component, pageProps }) {
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <div className="bg-darkgray-700 min-h-screen w-screen overflow-hidden">
+    <div className="bg-darkgray-700 min-h-screen max-w-screen overflow-hidden">
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Nav />
-      <Component {...pageProps} />
+
+      <PlayerProvider value={{ state, dispatch }}>
+        <Component {...pageProps} />
+        <AudioPlayer />
+      </PlayerProvider>
+
       <Footer />
     </div>
   );

@@ -1,10 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Halftone from "../components/Halftone";
 import EpisodeCard from "./EpisodeCard";
 import SponsorCard from "./SponsorCard";
+import { PlayerContext } from "../context/AudioPlayer";
 
 const Episodes = ({ episodes }) => {
+  const {
+    state: { playing },
+    dispatch
+  } = useContext(PlayerContext);
+
+  useEffect(() => {
+    dispatch({ type: "setEpisode", payload: episodes[0] });
+  }, []);
+
   const episodeList = episodes.map((episode, index) => {
+    episode.episodeNumber = index + 1;
     return <EpisodeCard episode={episode} key={index} />;
   });
   episodeList.splice(2, 0, <SponsorCard />);

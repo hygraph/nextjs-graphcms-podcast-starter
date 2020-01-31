@@ -20,3 +20,5 @@ export const Md = ({ children }) => (
     }}
   />
 );
+
+export { Markdown };

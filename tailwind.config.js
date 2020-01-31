@@ -1,9 +1,27 @@
+const defaultVariants = [
+  "responsive",
+  "group-hover",
+  "focus-within",
+  "first",
+  "last",
+  "odd",
+  "even",
+  "hover",
+  "focus",
+  "active",
+  "visited",
+  "disabled"
+];
+
 module.exports = {
   theme: {
     extend: {
       spacing: {
         half: "50%",
         full: "100%"
+      },
+      inset: {
+        "1/2": "50%"
       },
       colors: {
         darkgray: {
@@ -34,6 +52,11 @@ module.exports = {
       center: true
     }
   },
-  variants: {},
+  variants: {
+    opacity: defaultVariants,
+    display: defaultVariants,
+    height: defaultVariants,
+    textDecoration: defaultVariants
+  },
   plugins: []
 };
