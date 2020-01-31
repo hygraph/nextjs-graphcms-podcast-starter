@@ -7,10 +7,10 @@ import {
   faChevronLeft,
   faChevronRight
 } from "@fortawesome/free-solid-svg-icons";
-import { PlayerContext } from "../context/AudioPlayer";
-import { Markdown } from "./markdown-components";
 import Link from "next/link";
 import { useMediaControls } from "react-browser-hooks";
+import { PlayerContext } from "../context/AudioPlayer";
+import { Markdown } from "./markdown-components";
 
 const hms = seconds =>
   seconds ? new Date(seconds * 1000).toISOString().substr(11, 8) : "00:00:00";
@@ -56,6 +56,14 @@ const AudioPlayer = () => {
       unmute();
       play();
       dispatch({ type: "play" });
+    }
+  };
+
+  const togglePlayer = () => {
+    if (playerOpen) {
+      setPlayerOpen(false);
+    } else {
+      setPlayerOpen(true);
     }
   };
 
@@ -117,15 +125,7 @@ const AudioPlayer = () => {
               playerOpen ? "" : "hidden group-hover:block"
             }`}
           >
-            <button
-              onClick={() => {
-                if (playerOpen) {
-                  setPlayerOpen(false);
-                } else {
-                  setPlayerOpen(true);
-                }
-              }}
-            >
+            <button onClick={() => togglePlayer()}>
               <FontAwesomeIcon
                 icon={playerOpen ? faChevronLeft : faChevronRight}
                 width="18"
