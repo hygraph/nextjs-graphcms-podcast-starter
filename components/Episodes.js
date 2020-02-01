@@ -24,10 +24,12 @@ const Episodes = ({ episodes }) => {
 
   return (
     <div>
-      <div className="flex -mt-20 overflow-hidden text-darkgray-800 w-full">
-        <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
-        <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
-        <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
+      <div className="-mt-20 overflow-hidden text-darkgray-800 w-full">
+        <div className="flex" style={{ width: 1800, height: 375 }}>
+          <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
+          <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
+          <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
+        </div>
       </div>
       <div className="bg-darkgray-800 -mt-2">
         <div className="container">
