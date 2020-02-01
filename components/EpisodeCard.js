@@ -18,7 +18,10 @@ const EpisodeCard = ({ episode }) => {
   } = useContext(PlayerContext);
   return (
     <Card>
-      <Link href={`/episodes/${episode.episodeNumber}`}>
+      <Link
+        href="/episodes/[episode]"
+        as={`/episodes/${episode.episodeNumber}`}
+      >
         <a>
           <div className="absolute left-0 top-0 z-10 bg-darkgray-800 md:p-4">
             <p className="text-gray-200 font-bold uppercase text-sm relative">

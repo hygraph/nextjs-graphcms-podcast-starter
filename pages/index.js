@@ -1,5 +1,6 @@
 import React from "react";
 import Head from "next/head";
+const { GraphQLClient } = require("graphql-request");
 import Episodes from "../components/Episodes";
 import FeedBadges from "../components/FeedBadges";
 import HeroImage from "../components/HeroImage";
@@ -36,66 +37,49 @@ const Home = ({ feeds, episodes }) => {
 };
 
 Home.getInitialProps = async () => {
-  const { data } = {
-    data: {
-      episodes: [
-        {
-          image: {
-            url: "https://media.graphcms.com/meHpx8fTQWID8zd6aFvn"
-          },
-          episodeNumber: 1,
-          title: "# How the rain in Spain, stays **mainly** on the plain.",
-          description:
-            "An interesting development has occurred in recent weeks, where the rain that falls in Spain is mostly on the plain. But what does that mean for the people who, you know, *actually live there?* We go in-depth with our expert on all things rain **AND** Spain. This will be a good one.",
-          hosts: [
-            {
-              fullName: "Jesse Martin"
-            },
-            {
-              fullName: "Jamie Barton"
-            },
-            {
-              fullName: "Jonathan Steele"
-            }
-          ],
-          tags: [
-            {
-              name: "GraphQL"
-            },
-            {
-              name: "Schema Design"
-            }
-          ],
-          categories: [
-            {
-              name: "Weekly"
-            }
-          ],
-          resources: [
-            {
-              label: "New GraphCMS Website",
-              url: "https://www.graphcms.com"
-            }
-          ],
-          audioFile: {
-            url: "https://media.graphcms.com/G8maGcTQQBWgiCKSkd6z",
-            mimeType: "audio/mp3"
-          }
+  const query = `
+    {
+      episodes {
+        title
+        description
+        image {
+          url
         }
-      ]
+        hosts {
+          fullName
+        }
+        tags {
+          name
+        }
+        categories {
+          name
+        }
+        resources {
+          label
+          url
+        }
+        audioFile {
+          url
+          mimeType
+        }
+      }
     }
-  };
+  `;
+
+  const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
+  const request = await graphQLClient.request(query);
+  const { episodes } = request;
 
   return {
     episodes: [
-      ...data.episodes,
-      ...data.episodes,
-      ...data.episodes,
-      ...data.episodes,
-      ...data.episodes,
-      ...data.episodes,
-      ...data.episodes,
-      ...data.episodes
+      ...episodes,
+      ...episodes,
+      ...episodes,
+      ...episodes,
+      ...episodes,
+      ...episodes,
+      ...episodes,
+      ...episodes
     ],
     feeds: [
       {

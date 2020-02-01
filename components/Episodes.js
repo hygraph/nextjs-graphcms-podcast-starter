@@ -6,12 +6,14 @@ import { PlayerContext } from "../context/AudioPlayer";
 
 const Episodes = ({ episodes }) => {
   const {
-    state: { playing },
+    state: { playing, episode },
     dispatch
   } = useContext(PlayerContext);
 
   useEffect(() => {
-    dispatch({ type: "setEpisode", payload: episodes[0] });
+    if (!episode) {
+      dispatch({ type: "setEpisode", payload: episodes[0] });
+    }
   }, []);
 
   const episodeList = episodes.map((episode, index) => {
