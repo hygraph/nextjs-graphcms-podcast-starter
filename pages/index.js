@@ -62,6 +62,7 @@ Home.getInitialProps = async () => {
           url
           mimeType
         }
+        audioDuration
       }
     }
   `;

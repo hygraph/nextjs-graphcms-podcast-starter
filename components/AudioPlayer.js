@@ -35,16 +35,11 @@ const AudioPlayer = () => {
 
   const player = useRef(null);
 
-  const { pause, mute, unmute, play, currentTime } = useMediaControls(player);
+  const { pause, unmute, play, currentTime } = useMediaControls(player);
 
   useEffect(() => {
     if (episode) {
       setTrackLoaded(true);
-      (async () => {
-        await mute();
-        await play();
-        await pause();
-      })();
     }
   }, [episode]);
 
@@ -105,7 +100,7 @@ const AudioPlayer = () => {
                   <span
                     className="absolute bg-darkgray-900 h-2 w-2 rounded-full"
                     style={{
-                      left: `${(currentTime / player.current.duration) * 100}%`
+                      left: `${(currentTime / episode.audioDuration) * 100}%`
                     }}
                   />
                 ) : null}
@@ -114,7 +109,7 @@ const AudioPlayer = () => {
                 {trackLoaded ? (
                   <React.Fragment>
                     <span>{hms(currentTime)}</span>
-                    <span>{hms(player.current.duration)}</span>
+                    <span>{hms(episode.audioDuration)}</span>
                   </React.Fragment>
                 ) : null}
               </div>

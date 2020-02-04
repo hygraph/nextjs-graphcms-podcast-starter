@@ -1,10 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import Head from "next/head";
+const md5 = require("blueimp-md5");
 const { GraphQLClient } = require("graphql-request");
-import { Md } from "../../components/markdown-components";
+import { MdArticle as Md } from "../../components/markdown-components";
 import HeroImage from "../../components/HeroImage";
 import Halftone from "../../components/Halftone";
 import { PlayerContext } from "../../context/AudioPlayer";
+
+const Label = ({ children }) => (
+  <p className="uppercase text-sm mb-2 block text-teal-400 font-bold tracking-widest">
+    {children}
+  </p>
+);
 
 const Episode = ({ currentEpisode }) => {
   const {
@@ -25,14 +32,37 @@ const Episode = ({ currentEpisode }) => {
         </Head>
 
         <div className="flex flex-wrap">
-          <div className="w-full md:w-2/6 flex flex-wrap content-center">
-            <p className="uppercase text-sm mb-2 inline-block text-teal-400 font-bold tracking-widest">
-              It's time for
-            </p>
+          <div className="w-full md:w-2/6 flex flex-wrap content-center text-gray-100">
+            <Label>Today in Content Jazz</Label>
             <Md>{currentEpisode.title}</Md>
-            <Md>{currentEpisode.description}</Md>
+            {currentEpisode.guests && (
+              <div>
+                <Label>Guests</Label>
+              </div>
+            )}
+            <div>
+              <Label>Hosts</Label>
+              {currentEpisode.hosts.map((host, index) => {
+                return (
+                  <div className="flex">
+                    <img
+                      src={`https://www.gravatar.com/avatar/${md5(
+                        host.email
+                      )}?s=200`}
+                    />
+                    <p>{host.name}</p>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div>
+              <Label>Description</Label>
+              <Md>{currentEpisode.description}</Md>
+              <p>Resources</p>
+            </div>
           </div>
-          <HeroImage />
+          <HeroImage image={currentEpisode.image} />
         </div>
       </div>
       <div className="-mt-20 overflow-hidden text-darkgray-800 w-full">
@@ -127,6 +157,10 @@ export async function unstable_getStaticProps(context) {
       description
       hosts {
         fullName
+        email
+      }
+      image {
+        url
       }
       tags {
         name
