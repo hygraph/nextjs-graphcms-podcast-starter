@@ -13,7 +13,7 @@ const About = ({ page }) => {
         </Head>
 
         <div className="flex flex-wrap items-start">
-          <div className="flex flex-wrap content-center w-full md:w-2/6">
+          <div className="flex flex-wrap content-center w-full md:w-3/6">
             <p className="inline-block mb-2 text-sm font-bold tracking-widest text-teal-400 uppercase">
               It's time for
             </p>

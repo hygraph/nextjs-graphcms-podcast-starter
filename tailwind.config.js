@@ -15,6 +15,10 @@ const defaultVariants = [
 
 module.exports = {
   theme: {
+    fontFamily: {
+      display: ["Source Sans Pro", "Verdana"],
+      body: ["Open Sans", "Verdana"]
+    },
     extend: {
       spacing: {
         half: "50%",

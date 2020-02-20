@@ -6,11 +6,11 @@ import Markdown from "markdown-to-jsx";
 const HeroHeading1 = props => (
   <h1
     {...props}
-    className="mb-6 font-serif text-3xl font-bold leading-tight tracking-wider text-gray-300 md:text-5xl"
+    className="mb-6 text-3xl font-bold leading-tight tracking-wider text-gray-300 font-display md:text-5xl"
   />
 );
 const sharedHeroParagraph =
-  "mb-12 text-lg leading-normal tracking-wide text-gray-100 md:text-xl";
+  "mb-12 text-lg leading-normal tracking-wide text-gray-100 md:text-xl font-body";
 const HeroParagraph = props => (
   <p {...props} className={`${sharedHeroParagraph}`} />
 );
@@ -39,10 +39,10 @@ export const MdHero = ({ children }) => (
 // Base Styles
 
 export const Heading1 = props => (
-  <h1 {...props} className="mb-6 font-serif text-xl lg:text-2xl" />
+  <h1 {...props} className="mb-6 text-xl font-display lg:text-2xl" />
 );
 
-const sharedParagraphStyles = `mb-4 font-sans text-base leading-snug`;
+const sharedParagraphStyles = `mb-4 font-body text-base leading-snug`;
 
 export const Paragraph = props => (
   <p {...props} className={`${sharedParagraphStyles}`} />
@@ -75,7 +75,7 @@ export const Md = ({ children }) => (
 const ArticleHeading1 = props => (
   <h1
     {...props}
-    className="mb-6 font-serif text-3xl font-bold leading-tight tracking-wider text-gray-300 md:text-5xl"
+    className="mb-6 text-3xl font-bold leading-tight tracking-wider text-gray-300 font-display md:text-5xl"
   />
 );
 const sharedArticleParagraph =

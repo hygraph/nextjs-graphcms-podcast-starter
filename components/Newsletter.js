@@ -76,7 +76,7 @@ const Newsletter = () => {
           </button>
           {response ? (
             <div>
-              <p className="font-serif text-5xl text-gray-100">
+              <p className="text-5xl text-gray-100 font-display">
                 Thanks{response && " " + response.upsertPeople.fullName}!
               </p>
               <p className="text-lg text-darkgray-800">
