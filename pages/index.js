@@ -4,8 +4,9 @@ const { GraphQLClient } = require("graphql-request");
 import Episodes from "../components/Episodes";
 import FeedBadges from "../components/FeedBadges";
 import HeroImage from "../components/HeroImage";
+import { MdHero } from "../components/markdown-components";
 
-const Home = ({ feeds, episodes }) => {
+const Home = ({ page, feeds, episodes, sponsorships }) => {
   return (
     <div>
       <div className="container relative z-10 px-4 md:px-0">
@@ -13,93 +14,93 @@ const Home = ({ feeds, episodes }) => {
           <title>Home</title>
         </Head>
 
-        <div className="flex flex-wrap">
-          <div className="w-full md:w-2/6 flex flex-wrap content-center">
-            <p className="uppercase text-sm mb-2 inline-block text-teal-400 font-bold tracking-widest">
+        <div className="flex flex-wrap items-start">
+          <div className="flex flex-wrap content-center w-full md:w-2/6">
+            <p className="inline-block mb-2 text-sm font-bold tracking-widest text-teal-400 uppercase">
               It's time for
             </p>
-            <h1 className="text-5xl text-gray-300 mb-6 font-bold font-serif tracking-wider leading-tight">
-              A little Content Jazz Session
-            </h1>
-            <p className="text-gray-100 leading-normal tracking-wide text-xl mb-12">
-              TGM is a podcast about meaning, disguised as a podcast about
-              entrepreneurship. It’s a bright-eyed and sweary look at what it
-              takes to make a living on the internet (and still sleep at night).
-            </p>
+            <MdHero>{page.content}</MdHero>
             <FeedBadges feeds={feeds} />
           </div>
           <HeroImage />
         </div>
       </div>
-      <Episodes episodes={episodes} />
+      <Episodes episodes={episodes} sponsorships={sponsorships} />
     </div>
   );
 };
 
 Home.getInitialProps = async () => {
   const query = `
-    {
-      episodes {
-        title
-        description
-        image {
-          url
+  query PageContent($label: String){
+    page(where: {
+        label: $label
+    }) {
+        content
         }
-        hosts {
-          fullName
-        }
-        tags {
-          name
-        }
-        categories {
-          name
-        }
-        resources {
-          label
-          url
-        }
-        audioFile {
-          url
-          mimeType
-        }
-        audioDuration
+    sponsorships(where: {
+      NOT: {
+        position: null
+      }
+    }) {
+      id
+      title
+      body
+      position
+    }
+  
+  episodes {
+    title
+    description
+    image {
+      url
+    }
+    hosts {
+      fullName
+      photo {
+        url
       }
     }
+    tags {
+      name
+    }
+    categories {
+      name
+    }
+    resources {
+      label
+      url
+    }
+    audioFile {
+      url
+      mimeType
+    }
+    audioDuration
+  }
+
+feeds {
+  platform
+  url
+  badge {
+    url
+  }
+}
+}
   `;
 
   const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
-  const request = await graphQLClient.request(query);
-  const { episodes } = request;
 
-  return {
-    episodes: [
-      ...episodes,
-      ...episodes,
-      ...episodes,
-      ...episodes,
-      ...episodes,
-      ...episodes,
-      ...episodes,
-      ...episodes
-    ],
-    feeds: [
-      {
-        platform: "apple",
-        feed: "/",
-        badge: "/apple/US_UK_Apple_Podcasts_Listen_Badge_RGB.svg"
-      },
-      {
-        platform: "google",
-        feed: "/",
-        badge: "/google/google_podcasts_badge_svg.svg"
-      },
-      {
-        platform: "spotify",
-        feed: "/",
-        badge: "/spotify/spotify-podcast-badge-blk-grn-165x40.svg"
-      }
-    ]
+  const request = await graphQLClient.request(query, { label: "Home" });
+  const { page, episodes, feeds, sponsorships } = request;
+
+  const payload = {
+    page,
+    episodes,
+    feeds,
+    sponsorships
   };
+
+  return payload;
 };
 
 export default Home;

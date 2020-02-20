@@ -2,7 +2,7 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="text-gray-200 py-12">
+    <div className="relative z-10 py-12 text-gray-200">
       <div className="container flex flex-wrap px-4 md:px-0">
         <p>Powered by GraphCMS GmbH</p>
         <ul className="inline-flex ml-auto">
@@ -11,10 +11,10 @@ const Footer = () => {
               href="https://github.com/graphcms/graphcms-events"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lightgray hover:text-primary text-sm"
+              className="text-sm text-lightgray hover:text-primary"
             >
               <svg
-                className="fill-current w-5 h-5 mr-3"
+                className="w-5 h-5 mr-3 fill-current"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -28,10 +28,10 @@ const Footer = () => {
               href="http://slack.graphcms.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lightgray hover:text-primary text-sm"
+              className="text-sm text-lightgray hover:text-primary"
             >
               <svg
-                className="fill-current w-5 h-5 mr-3"
+                className="w-5 h-5 mr-3 fill-current"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -44,11 +44,11 @@ const Footer = () => {
             <a
               href="https://twitter.com/graphcms"
               target="_blank"
-              className="text-lightgray hover:text-primary text-sm"
+              className="text-sm text-lightgray hover:text-primary"
               rel="noopener noreferrer"
             >
               <svg
-                className="fill-current w-5 h-5 mr-3"
+                className="w-5 h-5 mr-3 fill-current"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -61,11 +61,11 @@ const Footer = () => {
             <a
               href="https://www.linkedin.com/company/graphcms"
               target="_blank"
-              className="text-lightgray hover:text-primary text-sm"
+              className="text-sm text-lightgray hover:text-primary"
               rel="noopener noreferrer"
             >
               <svg
-                className="fill-current w-5 h-5 mr-3"
+                className="w-5 h-5 mr-3 fill-current"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >

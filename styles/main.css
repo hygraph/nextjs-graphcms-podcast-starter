@@ -9,3 +9,12 @@
 .animate {
   @apply transition-all duration-500 ease-out;
 }
+
+.rotate {
+  animation: rotate 5s linear infinite;
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

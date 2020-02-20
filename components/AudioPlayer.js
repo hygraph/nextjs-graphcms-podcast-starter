@@ -1,6 +1,6 @@
 import React, { useContext, useState, useRef, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Draggable from "react-draggable";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlayCircle,
   faPauseCircle,
@@ -66,24 +66,23 @@ const AudioPlayer = () => {
     <Draggable positionOffset={{ x: "-50%", y: 0 }}>
       <div
         className={`fixed bottom-0 left-1/2 ${
-          playerOpen ? "w-1/3" : ""
-        } rounded-full main-gradient border border-darkgray-800 shadow-xl mb-12 z-50`}
+          playerOpen ? "w-full md:w-1/3" : "w-full md:w-auto"
+        } md:rounded-full main-gradient shadow-xl md:mb-12 z-50`}
       >
         <audio
           ref={player}
           muted
           src={trackLoaded ? episode.audioFile.url : null}
         ></audio>
-        <div className="px-8 py-8 m-1 rounded-full bg-darkgray-900 text-gray-100 flex items-center group">
+        <div className="flex items-center px-2 py-2 mt-1 text-gray-100 md:m-1 md:px-8 md:py-8 md:rounded-full bg-darkgray-900 group">
           <button onClick={() => togglePlay()}>
             <FontAwesomeIcon
               icon={playing ? faPauseCircle : faPlayCircle}
-              width="72"
-              className="inline-block mr-2"
+              className="inline-block w-8 mr-2 md:w-12"
             />
           </button>
           {playerOpen && (
-            <div className="pl-6 w-8/12">
+            <div className="w-8/12 pl-6">
               {trackLoaded ? (
                 <Link href={`/episodes/${episode.episodeNumber}`}>
                   <a>
@@ -95,17 +94,17 @@ const AudioPlayer = () => {
               ) : (
                 <p>"…"</p>
               )}
-              <div className="h-1 my-2 w-full main-gradient rounded-full relative">
+              <div className="relative w-full h-1 my-2 rounded-full main-gradient">
                 {trackLoaded ? (
                   <span
-                    className="absolute bg-darkgray-900 h-2 w-2 rounded-full"
+                    className="absolute w-2 h-2 rounded-full bg-darkgray-900"
                     style={{
                       left: `${(currentTime / episode.audioDuration) * 100}%`
                     }}
                   />
                 ) : null}
               </div>
-              <div className="flex justify-between opacity-0 group-hover:opacity-100 h-0 overflow-hidden group-hover:h-auto">
+              <div className="flex justify-between h-0 overflow-hidden opacity-0 group-hover:opacity-100 group-hover:h-auto">
                 {trackLoaded ? (
                   <React.Fragment>
                     <span>{hms(currentTime)}</span>
@@ -120,7 +119,10 @@ const AudioPlayer = () => {
               playerOpen ? "" : "hidden group-hover:block"
             }`}
           >
-            <button onClick={() => togglePlayer()}>
+            <button
+              className="invisible md:visible"
+              onClick={() => togglePlayer()}
+            >
               <FontAwesomeIcon
                 icon={playerOpen ? faChevronLeft : faChevronRight}
                 width="18"

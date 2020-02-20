@@ -3,7 +3,8 @@ const fetch = require("node-fetch");
 const { HttpLink } = require("apollo-link-http");
 const {
   introspectSchema,
-  makeRemoteExecutableSchema
+  makeRemoteExecutableSchema,
+  transformSchema
 } = require("graphql-tools");
 
 export const config = {

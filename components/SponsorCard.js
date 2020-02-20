@@ -2,31 +2,17 @@ import React from "react";
 import { Md } from "./markdown-components";
 import Card from "./Card";
 
-const placeholderTitle = `
-# Put a sponsorship message right here!
-`;
-const placeholderBody = `
-Sometimes sponsors like to use big ads to sell something. Not us, we prefer clean text that says exactly what we mean. No gimmicks, pure eloquence wrapped up in a gradient. It's better, isn't it?
-`;
-const placeholderLink = "/";
-const placeholderCta = `Click on this button!`;
-
-const SponsorCard = ({
-  ctaText = placeholderCta,
-  ctaLink = placeholderLink,
-  title = placeholderTitle,
-  body = placeholderBody
-}) => {
+const SponsorCard = ({ sponsorship }) => {
   return (
     <Card>
-      <div className="px-8 py-6 flex flex-wrap flex-col self-stretch flex-1 content-start pb-12">
-        <Md>{title}</Md>
-        <Md>{body}</Md>
+      <div className="flex flex-col flex-wrap content-start self-stretch flex-1 px-8 py-6 pb-12">
+        <Md>{sponsorship.title}</Md>
+        <Md>{sponsorship.body}</Md>
         <a
-          href={ctaLink}
-          className="py-4 mx-auto px-8 main-gradient inline-block mt-auto rounded-full font-bold"
+          href={sponsorship.cta}
+          className="inline-block px-8 py-4 mx-auto mt-auto font-bold rounded-full main-gradient"
         >
-          {ctaText}
+          Learn More
         </a>
       </div>
     </Card>

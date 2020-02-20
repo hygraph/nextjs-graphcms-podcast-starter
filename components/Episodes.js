@@ -4,7 +4,7 @@ import EpisodeCard from "./EpisodeCard";
 import SponsorCard from "./SponsorCard";
 import { PlayerContext } from "../context/AudioPlayer";
 
-const Episodes = ({ episodes }) => {
+const Episodes = ({ episodes, sponsorships }) => {
   const {
     state: { playing, episode },
     dispatch
@@ -20,24 +20,33 @@ const Episodes = ({ episodes }) => {
     episode.episodeNumber = index + 1;
     return <EpisodeCard episode={episode} key={index} />;
   });
-  episodeList.splice(2, 0, <SponsorCard key="wack" />);
+
+  if (sponsorships) {
+    sponsorships.forEach((sponsorship, index) => {
+      episodeList.splice(
+        sponsorship.position,
+        0,
+        <SponsorCard key={`sponsorship-${index}`} sponsorship={sponsorship} />
+      );
+    });
+  }
 
   return (
     <div>
-      <div className="-mt-20 overflow-hidden text-darkgray-800 w-full">
+      <div className="w-full -mt-20 overflow-hidden text-darkgray-800">
         <div className="flex" style={{ width: 1800, height: 375 }}>
           <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
           <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
           <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />
         </div>
       </div>
-      <div className="bg-darkgray-800 -mt-2">
+      <div className="-mt-2 bg-darkgray-800">
         <div className="container">
-          <div className="flex flex-wrap -mx-4 items-stretch">
+          <div className="flex flex-wrap items-stretch -mx-4">
             {episodeList}
           </div>
-          <div className="items-center flex py-12">
-            <button className="text-gray-100 py-4 mx-auto px-8 bg-darkgray-900 inline-block mt-auto rounded-full font-bold ">
+          <div className="flex items-center py-12">
+            <button className="inline-block px-8 py-4 mx-auto mt-auto font-bold text-gray-100 rounded-full bg-darkgray-900 ">
               Load More…
             </button>
           </div>

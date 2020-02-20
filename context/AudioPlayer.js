@@ -16,6 +16,8 @@ const reducer = (state, action) => {
       return { ...state, episode: action.payload };
     case "play":
       return { ...state, playing: true };
+    case "playEpisode":
+      return { ...state, playing: true, episode: action.payload };
     case "pause":
       return { ...state, playing: false };
     default:
