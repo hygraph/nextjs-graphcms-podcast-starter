@@ -128,8 +128,6 @@ export async function unstable_getStaticPaths(context) {
 }
 
 export async function unstable_getStaticProps(context) {
-  const value = process.env.SENDER_EMAIL;
-  value;
   const {
     params: { episodeNumber }
   } = context;

@@ -1,7 +1,4 @@
 const sgMail = require("@sendgrid/mail");
-const { GraphQLClient } = require("graphql-request");
-const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
-
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 module.exports = async (req, res) => {

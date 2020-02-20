@@ -4,7 +4,7 @@ import FetchPageData from "../components/FetchPageData";
 import { MdHero } from "../components/markdown-components";
 const PAGE = "About";
 
-const About = ({ page, resources }) => {
+const About = ({ page }) => {
   return (
     <div>
       <div className="container relative z-10 px-4 md:px-0">

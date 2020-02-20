@@ -1,6 +1,6 @@
 import React from "react";
 import Head from "next/head";
-import FetchPageData from "../components/FetchPageData";
+// import FetchPageData from "../components/FetchPageData";
 import Halftone from "../components/Halftone";
 import { Markdown, MdHero, Label } from "../components/markdown-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,7 +8,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 const PAGE = "Resources";
 
 const About = ({ page, resources }) => {
-  return (
+  return page ? (
     <div>
       <div className="container relative z-10 px-4 md:px-0">
         <Head>
@@ -37,7 +37,7 @@ const About = ({ page, resources }) => {
                 return (
                   <a
                     href={resource.url}
-                    ket={index}
+                    key={index}
                     className="w-full px-4 py-8 md:w-1/2 lg:w-1/3"
                   >
                     <div className="flex flex-col items-center h-full px-4 py-6 mb-4 text-xl leading-loose text-gray-100 border border-gray-100 rounded-sm hover:bg-darkgray-900">
@@ -87,23 +87,36 @@ const About = ({ page, resources }) => {
         </div>
       </div>
     </div>
-  );
+  ) : null;
 };
 
 export async function unstable_getStaticProps(context) {
-  const extraData = `
-        resources {
-            label
-            url
-            description
-            episodes {
-                title
-                episodeNumber
+  const { GraphQLClient } = require("graphql-request");
+  console.log(`${process.env.URL}/api/graphql`);
+  const query = `
+        query PageContent($label: String){
+          page(where: {
+              label: $label
+          }) {
+              content
+              }
+              resources {
+                label
+                url
+                description
+                episodes {
+                    title
+                    episodeNumber
+                }
             }
-        }
-    `;
+          }
+        `;
 
-  const { page, resources } = await FetchPageData(context, PAGE, extraData);
+  const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
+  const { page, resources } = await graphQLClient.request(query, {
+    label: PAGE
+  });
+
   return { props: { page, resources } };
 }
 
