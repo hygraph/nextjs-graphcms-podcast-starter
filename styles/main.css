@@ -3,7 +3,7 @@
   font-family: "Source Sans Pro";
   src: url("/fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf");
   font-weight: bold;
-  font-display: swap;
+  font-display: block;
   font-style: normal;
 }
 
@@ -11,7 +11,7 @@
   font-family: "Open Sans";
   src: url("/fonts/Open_Sans/OpenSans-SemiBold.ttf");
   font-weight: normal;
-  font-display: swap;
+  font-display: block;
   font-style: normal;
 }
 

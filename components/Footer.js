@@ -2,8 +2,8 @@ import React from "react";
 
 const Footer = () => {
   return (
-    <div className="relative z-10 py-12 text-gray-200">
-      <div className="container flex flex-wrap px-4 md:px-0">
+    <div className="relative z-10 py-12 mt-auto text-gray-200">
+      <div className="container flex flex-wrap">
         <p>Powered by GraphCMS GmbH</p>
         <ul className="inline-flex ml-auto">
           <li className="my-1">

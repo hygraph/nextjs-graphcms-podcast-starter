@@ -42,9 +42,9 @@ const MenuBlock = ({ menuIsOpen }) => {
   }));
 
   return (
-    <div className="flex flex-wrap text-gray-200 md:ml-auto md:w-1/2">
+    <div className="flex flex-wrap w-full text-gray-200 md:ml-auto md:w-1/2">
       <ul
-        className={`flex flex-wrap justify-around flex-grow items-center bg-darkgray-800 md:bg-transparent -mx-4 md:mx-0 px-4 md:px-0 my-4 md:my-0 ${
+        className={`flex flex-wrap justify-around flex-grow items-center bg-darkgray-800 md:bg-transparent -mx-8 md:mx-0 px-8 md:px-0 my-4 md:my-0 w-full md:w-auto ${
           menuIsOpen ? "" : "h-0 overflow-hidden md:overflow-auto md:h-auto"
         }`}
       >
@@ -73,7 +73,7 @@ const Nav = () => {
   return (
     <div className="">
       <div className="w-full h-2 mb-4 main-gradient" />
-      <nav className="container flex flex-wrap px-4 py-6 mb-4 md:px-0">
+      <nav className="container flex flex-wrap py-6 mb-4">
         <LogoBlock toggleMenu={toggleMenu} />
         <MenuBlock menuIsOpen={menuIsOpen} />
       </nav>

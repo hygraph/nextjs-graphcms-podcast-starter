@@ -9,7 +9,7 @@ const PAGE = "Resources";
 const About = ({ page, resources }) => {
   return page ? (
     <div>
-      <div className="container relative z-10 px-4 md:px-0">
+      <div className="container relative z-10">
         <Head>
           <title>{PAGE}</title>
         </Head>
@@ -29,7 +29,7 @@ const About = ({ page, resources }) => {
         </div>
       </div>
       <div className="bg-darkgray-800">
-        <div className="container relative z-10 px-4 md:px-0">
+        <div className="container relative z-10">
           <div className="flex flex-wrap -mx-4">
             {resources &&
               resources.map((resource, index) => {

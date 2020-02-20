@@ -32,7 +32,7 @@ const Episodes = ({ episodes, sponsorships }) => {
   }
 
   return (
-    <div>
+    <div className="w-full">
       <div className="w-full -mt-20 overflow-hidden text-darkgray-800">
         <div className="flex" style={{ width: 1800, height: 375 }}>
           <Halftone width="600px" style={{ transform: "rotate(180deg)" }} />

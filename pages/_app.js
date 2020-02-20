@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
   const [subscriberBoxOpen, toggleSubscriberBox] = useState(false);
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <div className="min-h-screen overflow-hidden bg-darkgray-700 max-w-screen">
+    <div className="flex flex-col flex-wrap min-h-screen overflow-hidden bg-darkgray-700 max-w-screen">
       <NewsletterProvider value={{ subscriberBoxOpen, toggleSubscriberBox }}>
         <Head>
           <link rel="icon" href="/favicon.ico" />

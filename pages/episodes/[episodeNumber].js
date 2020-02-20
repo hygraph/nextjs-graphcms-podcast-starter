@@ -34,7 +34,7 @@ const Episode = ({ currentEpisode }) => {
           <title>Episode {currentEpisode.episodeNumber}</title>
         </Head>
 
-        <div className="container relative z-10 flex flex-wrap items-start px-4 mb-12">
+        <div className="container relative z-10 flex flex-wrap items-start mb-12">
           <div className="flex flex-wrap content-center w-full text-gray-100 md:w-2/6">
             <Label>Today in Content Jazz</Label>
             <Md>{currentEpisode.title}</Md>
@@ -57,7 +57,7 @@ const Episode = ({ currentEpisode }) => {
           </div>
         </div>
         <div className="bg-darkgray-800">
-          <div className="container relative px-4">
+          <div className="container relative">
             <div className="flex flex-wrap md:-mx-8">
               <div className="w-full md:px-8 md:w-1/2">
                 <Label>Description</Label>
