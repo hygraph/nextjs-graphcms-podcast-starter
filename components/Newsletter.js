@@ -135,12 +135,15 @@ const Newsletter = () => {
                   </ErrorMessage>
                 </div>
               </div>
-              <div className="flex mb-6">
+              <div className="mb-6">
                 <label
-                  className="flex block mb-2 mr-4 text-lg font-bold text-darkgray-900"
+                  className="block mb-2 mr-4 text-lg font-bold text-darkgray-900"
                   htmlFor="Agree to the Terms"
                 >
-                  Agree to the Terms?
+                  This example is built by GraphCMS.
+                  <br /> By checking the box you agree to our{" "}
+                  <a href="https://graphcms.com/terms/">TOS</a> and{" "}
+                  <a href="https://graphcms.com/privacy/">Privacy Policy</a>
                 </label>
                 <input
                   className="hidden opacity-0"
