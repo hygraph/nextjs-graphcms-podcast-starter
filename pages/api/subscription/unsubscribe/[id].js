@@ -1,4 +1,4 @@
-const { graphQLClient } = require("../../_client");
+const { graphQLClient } = require("../../../../clients/_write_client");
 
 const mutation = `
 mutation ConfirmUnsubscribe($id:ID) {

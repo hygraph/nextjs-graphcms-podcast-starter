@@ -1,19 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import Head from "next/head";
-const { GraphQLClient } = require("graphql-request");
-import { MdArticle as Md } from "../../components/markdown-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { MdArticle as Md, Label } from "../../components/markdown-components";
 import HeroImage from "../../components/HeroImage";
 import Halftone from "../../components/Halftone";
 import { PlayerContext } from "../../context/AudioPlayer";
 import PeopleBlock from "../../components/PeopleBlock";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-
-const Label = ({ children }) => (
-  <p className="block mb-2 text-sm font-bold tracking-widest text-teal-400 uppercase">
-    {children}
-  </p>
-);
 
 const Episode = ({ currentEpisode }) => {
   const {
@@ -103,6 +96,7 @@ const Episode = ({ currentEpisode }) => {
 };
 
 export async function unstable_getServerProps(context) {
+  const { graphQLClient } = require("../../clients/_read_client");
   const {
     params: { episodeNumber }
   } = context;
@@ -149,8 +143,6 @@ export async function unstable_getServerProps(context) {
     }
   }
   `;
-
-  const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
 
   const request = await graphQLClient.request(query, {
     episodeNumber: episodeNumber / 1

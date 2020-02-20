@@ -89,8 +89,8 @@ const About = ({ page, resources }) => {
   ) : null;
 };
 
-export async function unstable_getServerProps(context) {
-  const { GraphQLClient } = require("graphql-request");
+export async function unstable_getStaticProps(context) {
+  const { graphQLClient } = require("../clients/_read_client");
   const query = `
         query PageContent($label: String){
           page(where: {
@@ -110,7 +110,6 @@ export async function unstable_getServerProps(context) {
           }
         `;
 
-  const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
   const { page, resources } = await graphQLClient.request(query, {
     label: PAGE
   });

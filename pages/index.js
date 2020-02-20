@@ -30,8 +30,8 @@ const Home = ({ page, feeds, episodes, sponsorships }) => {
   );
 };
 
-export async function unstable_getServerProps(context) {
-  const { GraphQLClient } = require("graphql-request");
+export async function unstable_getStaticProps(context) {
+  const { graphQLClient } = require("../clients/_read_client");
   const query = `
   query PageContent($label: String){
     page(where: {
@@ -88,15 +88,12 @@ feeds {
 }
 }
   `;
-
-  const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
   const { page, episodes, feeds, sponsorships } = await graphQLClient.request(
     query,
     {
       label: PAGE
     }
   );
-
   return { props: { page, episodes, feeds, sponsorships } };
 }
 

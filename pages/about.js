@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-import FetchPageData from "../components/FetchPageData";
 import { MdHero } from "../components/markdown-components";
 const PAGE = "About";
 
