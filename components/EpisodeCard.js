@@ -46,8 +46,12 @@ const EpisodeCard = props => {
                 onClick={e => {
                   e.preventDefault();
                   dispatch({
-                    type: playing ? "pause" : "playEpisode",
-                    payload: playing ? null : currentEpisode
+                    type:
+                      playing &&
+                      currentEpisode.episodeNumber === episode.episodeNumber
+                        ? "pause"
+                        : "playEpisode",
+                    payload: currentEpisode
                   });
                 }}
               >

@@ -34,6 +34,7 @@ const AudioPlayer = () => {
   const [playerOpen, setPlayerOpen] = useState(true);
 
   const player = useRef(null);
+  const isFirstRun = useRef(true);
 
   const { pause, unmute, play, currentTime } = useMediaControls(player);
 
@@ -43,13 +44,24 @@ const AudioPlayer = () => {
     }
   }, [episode]);
 
+  useEffect(() => {
+    if (!isFirstRun.current) {
+      if (playing) {
+        unmute();
+        play();
+      } else {
+        pause();
+      }
+    }
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+    }
+  }, [playing, episode]);
+
   const togglePlay = () => {
     if (playing) {
-      pause();
       dispatch({ type: "pause" });
     } else {
-      unmute();
-      play();
       dispatch({ type: "play" });
     }
   };
@@ -75,7 +87,7 @@ const AudioPlayer = () => {
           src={trackLoaded ? episode.audioFile.url : null}
         ></audio>
         <div className="flex items-center px-2 py-2 mt-1 text-gray-100 md:m-1 md:px-8 md:py-8 md:rounded-full bg-darkgray-900 group">
-          <button onClick={() => togglePlay()}>
+          <button onClick={togglePlay}>
             <FontAwesomeIcon
               icon={playing ? faPauseCircle : faPlayCircle}
               className="inline-block w-8 mr-2 md:w-12"
@@ -119,10 +131,7 @@ const AudioPlayer = () => {
               playerOpen ? "" : "hidden group-hover:block"
             }`}
           >
-            <button
-              className="invisible md:visible"
-              onClick={() => togglePlayer()}
-            >
+            <button className="invisible md:visible" onClick={togglePlayer}>
               <FontAwesomeIcon
                 icon={playerOpen ? faChevronLeft : faChevronRight}
                 width="18"
