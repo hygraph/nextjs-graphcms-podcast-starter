@@ -90,7 +90,7 @@ const About = ({ page, resources }) => {
   ) : null;
 };
 
-export async function unstable_getStaticProps(context) {
+export async function unstable_getServerProps(context) {
   const { GraphQLClient } = require("graphql-request");
   console.log(`${process.env.URL}/api/graphql`);
   const query = `
