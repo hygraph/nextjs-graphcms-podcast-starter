@@ -14,6 +14,8 @@
   "env": {
     "GRAPHCMS_QUERY_TOKEN": "@demo-gcms-podcast-query-token",
     "GRAPHCMS_MUTATION_TOKEN": "@demo-gcms-podcast-mutate-token",
-    "GRAPHCMS_ENDPOINT": "@demo-gcms-podcast-endpoint"
+    "GRAPHCMS_ENDPOINT": "@demo-gcms-podcast-endpoint",
+    "SENDGRID_API_KEY": "@demo-gcms-podcast-sendgrid-api-key",
+    "SENDER_EMAIL": "@demo-gcms-podcast-sender-email"
   }
 }
