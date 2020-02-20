@@ -6,7 +6,7 @@ const PAGE = "About";
 
 const About = ({ page }) => {
   return (
-    <div>
+    <div className="w-full">
       <div className="container relative z-10">
         <Head>
           <title>{PAGE}</title>

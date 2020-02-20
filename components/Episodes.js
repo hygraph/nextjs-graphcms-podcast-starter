@@ -45,13 +45,11 @@ const Episodes = ({ episodes, sponsorships }) => {
           <div className="flex flex-wrap items-stretch -mx-4">
             {episodeList}
           </div>
-          {false && (
-            <div className="flex items-center py-12">
-              <button className="inline-block px-8 py-4 mx-auto mt-auto font-bold text-gray-100 rounded-full bg-darkgray-900 ">
-                Load More…
-              </button>
-            </div>
-          )}
+          <div className="flex items-center py-12">
+            <button className="inline-block px-8 py-4 mx-auto mt-auto font-bold text-gray-100 rounded-full bg-darkgray-900 ">
+              Load More…
+            </button>
+          </div>
         </div>
       </div>
     </div>

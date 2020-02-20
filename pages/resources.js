@@ -8,7 +8,7 @@ const PAGE = "Resources";
 
 const About = ({ page, resources }) => {
   return page ? (
-    <div>
+    <div className="w-full">
       <div className="container relative z-10">
         <Head>
           <title>{PAGE}</title>

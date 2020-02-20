@@ -1,7 +1,7 @@
 @tailwind base;
 @font-face {
   font-family: "Source Sans Pro";
-  src: url("/fonts/Source_Sans_Pro/SourceSansPro-Bold.ttf");
+  src: url("/fonts/source_sans_pro/SourceSansPro-Bold.ttf");
   font-weight: bold;
   font-display: block;
   font-style: normal;
@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: "Open Sans";
-  src: url("/fonts/Open_Sans/OpenSans-SemiBold.ttf");
+  src: url("/fonts/open_sans/OpenSans-SemiBold.ttf");
   font-weight: normal;
   font-display: block;
   font-style: normal;

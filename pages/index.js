@@ -8,7 +8,7 @@ const PAGE = "Home";
 
 const Home = ({ page, feeds, episodes, sponsorships }) => {
   return (
-    <React.Fragment>
+    <div className="w-full">
       <div className="container relative z-10">
         <Head>
           <title>Home</title>
@@ -26,7 +26,7 @@ const Home = ({ page, feeds, episodes, sponsorships }) => {
         </div>
       </div>
       <Episodes episodes={episodes} sponsorships={sponsorships} />
-    </React.Fragment>
+    </div>
   );
 };
 
