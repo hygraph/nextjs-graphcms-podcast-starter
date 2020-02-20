@@ -102,32 +102,7 @@ const Episode = ({ currentEpisode }) => {
   );
 };
 
-export async function unstable_getStaticPaths(context) {
-  const { data } = {
-    data: {
-      episodes: [{ count: 0 }]
-    }
-  };
-
-  const episodes = [
-    ...data.episodes,
-    ...data.episodes,
-    ...data.episodes,
-    ...data.episodes,
-    ...data.episodes,
-    ...data.episodes,
-    ...data.episodes,
-    ...data.episodes
-  ];
-
-  return episodes.map((episode, index) => {
-    params: {
-      episodeNumber: index + 1;
-    }
-  });
-}
-
-export async function unstable_getStaticProps(context) {
+export async function unstable_getServerProps(context) {
   const {
     params: { episodeNumber }
   } = context;

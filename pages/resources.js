@@ -1,6 +1,5 @@
 import React from "react";
 import Head from "next/head";
-// import FetchPageData from "../components/FetchPageData";
 import Halftone from "../components/Halftone";
 import { Markdown, MdHero, Label } from "../components/markdown-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -92,7 +91,6 @@ const About = ({ page, resources }) => {
 
 export async function unstable_getServerProps(context) {
   const { GraphQLClient } = require("graphql-request");
-  console.log(`${process.env.URL}/api/graphql`);
   const query = `
         query PageContent($label: String){
           page(where: {

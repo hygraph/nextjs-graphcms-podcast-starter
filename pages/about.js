@@ -25,8 +25,23 @@ const About = ({ page }) => {
   );
 };
 
-export async function unstable_getStaticProps(context) {
-  const { page } = await FetchPageData(context, PAGE);
+export async function unstable_getServerProps(context) {
+  const { GraphQLClient } = require("graphql-request");
+  const query = `
+        query PageContent($label: String){
+          page(where: {
+              label: $label
+          }) {
+              content
+              }
+          }
+        `;
+
+  const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
+  const { page } = await graphQLClient.request(query, {
+    label: PAGE
+  });
+
   return { props: { page } };
 }
 

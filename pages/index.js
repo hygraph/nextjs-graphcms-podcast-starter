@@ -1,10 +1,10 @@
 import React from "react";
 import Head from "next/head";
-const { GraphQLClient } = require("graphql-request");
 import Episodes from "../components/Episodes";
 import FeedBadges from "../components/FeedBadges";
 import HeroImage from "../components/HeroImage";
 import { MdHero } from "../components/markdown-components";
+const PAGE = "Home";
 
 const Home = ({ page, feeds, episodes, sponsorships }) => {
   return (
@@ -30,7 +30,8 @@ const Home = ({ page, feeds, episodes, sponsorships }) => {
   );
 };
 
-Home.getInitialProps = async () => {
+export async function unstable_getServerProps(context) {
+  const { GraphQLClient } = require("graphql-request");
   const query = `
   query PageContent($label: String){
     page(where: {
@@ -89,18 +90,14 @@ feeds {
   `;
 
   const graphQLClient = new GraphQLClient(`${process.env.URL}/api/graphql`);
+  const { page, episodes, feeds, sponsorships } = await graphQLClient.request(
+    query,
+    {
+      label: PAGE
+    }
+  );
 
-  const request = await graphQLClient.request(query, { label: "Home" });
-  const { page, episodes, feeds, sponsorships } = request;
-
-  const payload = {
-    page,
-    episodes,
-    feeds,
-    sponsorships
-  };
-
-  return payload;
-};
+  return { props: { page, episodes, feeds, sponsorships } };
+}
 
 export default Home;
