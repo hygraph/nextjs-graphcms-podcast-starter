@@ -11,8 +11,9 @@ module.exports = async (req, res) => {
     }
   } = data;
 
-  if (fieldName !== "createPeople" || !subscriber || confirmed)
+  if (fieldName !== "upsertPeople" || !subscriber || confirmed) {
     return res.status(422);
+  }
 
   try {
     let { id, fullName, email } = responseData;
