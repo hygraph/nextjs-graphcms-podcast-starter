@@ -14,6 +14,9 @@ mutation CreateSubscriber($fullName:String, $email:String) {
       email: $email
     }) {
       fullName
+      subscriber
+      email
+      confirmed
     }
   }
 `;
