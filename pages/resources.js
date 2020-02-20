@@ -1,9 +1,9 @@
 import React from "react";
 import Head from "next/head";
-import Halftone from "../components/Halftone";
 import { Markdown, MdHero, Label } from "../components/markdown-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import Halftone from "../components/Halftone";
 const PAGE = "Resources";
 
 const About = ({ page, resources }) => {
