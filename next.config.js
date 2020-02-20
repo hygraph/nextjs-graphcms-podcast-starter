@@ -14,7 +14,7 @@ module.exports = phase => {
     URL: (() => {
       if (isDev) return "http://localhost:3000";
       if (isProd) {
-        return "https://contentjazz.now.sh";
+        return "https://nextjs-graphcms-podcast-starter.now.sh";
       }
       if (isStaging) return "http://localhost:11639";
     })()

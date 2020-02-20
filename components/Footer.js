@@ -8,7 +8,7 @@ const Footer = () => {
         <ul className="inline-flex ml-auto">
           <li className="my-1">
             <a
-              href="https://github.com/graphcms/graphcms-events"
+              href="https://github.com/graphcms/nextjs-graphcms-podcast-starter"
               target="_blank"
               rel="noopener noreferrer"
               className="text-sm text-lightgray hover:text-primary"

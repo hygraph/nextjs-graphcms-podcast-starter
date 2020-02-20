@@ -31,15 +31,15 @@ Podcasts are a great way to get start an indie movement, build a loyal user base
 
 If you wish to extend and work with this example locally, follow the instructions below.
 
-If you'd rather check out a [demo](https://contentjazz.now.sh/) or deploy to your own Now account, you can do that too.
+If you'd rather check out a [demo](https://nextjs-graphcms-podcast-starter.now.sh/) or deploy to your own Now account, you can do that too.
 
 First, you will need accounts at GraphCMS, Sendgrid and Now.
 
 ### 1. Download and install dependencies
 
 ```bash
-git clone git@github.com:github.com/GraphCMS/contentjazz.git
-cd contentjazz
+git clone git@github.com:github.com/GraphCMS/nextjs-graphcms-podcast-starter.git
+cd nextjs-graphcms-podcast-starter
 yarn # npm install
 cp .env.buld.sample .env.build
 cp .env.sample .env
