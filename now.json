@@ -8,7 +8,9 @@
   ],
   "build": {
     "env": {
-      "GRAPHCMS_ENDPOINT": "@demo-gcms-podcast-endpoint"
+      "GRAPHCMS_ENDPOINT": "@demo-gcms-podcast-endpoint",
+      "GRAPHCMS_QUERY_TOKEN": "@demo-gcms-podcast-query-token",
+      "GRAPHCMS_MUTATION_TOKEN": "@demo-gcms-podcast-mutate-token"
     }
   },
   "env": {
