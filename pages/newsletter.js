@@ -220,7 +220,7 @@ const Newsletter = ({ page, currentEpisode }) => {
   );
 };
 
-export async function unstable_getServerProps(context) {
+export async function unstable_getStaticProps(context) {
   const { graphQLClient } = require("../clients/_read_client");
   const query = `
           query PageContent($label: String){
