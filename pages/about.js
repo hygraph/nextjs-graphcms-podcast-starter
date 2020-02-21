@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Head from "next/head";
 import { MdHero } from "../components/markdown-components";
+import { PlayerContext } from "../context/AudioPlayer";
 const PAGE = "About";
 
-const About = ({ page }) => {
+const About = ({ page, currentEpisode }) => {
+  const {
+    state: { playing, episode },
+    dispatch
+  } = useContext(PlayerContext);
+
+  useEffect(() => {
+    if (!episode) {
+      dispatch({ type: "setEpisode", payload: currentEpisode });
+    }
+  }, []);
+
   return (
     <div className="w-full">
       <div className="container relative z-10">
@@ -33,13 +45,21 @@ export async function unstable_getServerProps(context) {
           }) {
               content
               }
+              episodes(first: 1) {
+                title
+                audioFile {
+                  url
+                  mimeType
+                }
+                audioDuration
+              }
           }
         `;
-  const { page } = await graphQLClient.request(query, {
+  const { page, episodes } = await graphQLClient.request(query, {
     label: PAGE
   });
 
-  return { props: { page } };
+  return { props: { page, currentEpisode: episodes[0] } };
 }
 
 export default About;

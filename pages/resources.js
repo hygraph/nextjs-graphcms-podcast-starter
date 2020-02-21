@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import Head from "next/head";
 import { Markdown, MdHero, Label } from "../components/markdown-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import Halftone from "../components/Halftone";
+import { PlayerContext } from "../context/AudioPlayer";
 const PAGE = "Resources";
 
-const About = ({ page, resources }) => {
+const About = ({ page, resources, currentEpisode }) => {
+  const {
+    state: { playing, episode },
+    dispatch
+  } = useContext(PlayerContext);
+
+  useEffect(() => {
+    if (!episode) {
+      dispatch({ type: "setEpisode", payload: currentEpisode });
+    }
+  }, []);
+
   return page ? (
     <div className="w-full">
       <div className="container relative z-10">
@@ -98,6 +110,14 @@ export async function unstable_getStaticProps(context) {
           }) {
               content
               }
+              episodes(first: 1) {
+                title
+                audioFile {
+                  url
+                  mimeType
+                }
+                audioDuration
+              }
               resources {
                 label
                 url
@@ -110,11 +130,11 @@ export async function unstable_getStaticProps(context) {
           }
         `;
 
-  const { page, resources } = await graphQLClient.request(query, {
+  const { page, resources, episodes } = await graphQLClient.request(query, {
     label: PAGE
   });
 
-  return { props: { page, resources } };
+  return { props: { page, resources, currentEpisode: episodes[0] } };
 }
 
 export default About;
