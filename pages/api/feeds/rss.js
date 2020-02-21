@@ -1,12 +1,49 @@
 import { toXML } from "jstoxml";
+import { format } from "date-fns";
+const { graphQLClient } = require("../../../clients/_read_client");
 
-const xmlOptions = {
-  header: true,
-  indent: "  "
-};
+const hms = seconds =>
+  seconds ? new Date(seconds * 1000).toISOString().substr(11, 8) : "00:00:00";
 
-const feed = toXML(
+module.exports = async (req, res) => {
+  const query = `
   {
+    episodes {
+      id
+      title
+      description
+      showNotes
+      audioDuration
+      guests {
+        fullName
+      }
+      hosts {
+        fullName
+      }
+      image {
+        url
+      }
+      audioFile {
+        url
+        mimeType
+      }
+      updatedAt
+      createdAt
+      tags {
+        name
+      }
+    }
+  }
+        `;
+
+  const { episodes } = await graphQLClient.request(query);
+
+  const xmlOptions = {
+    header: true,
+    indent: "  "
+  };
+
+  const feed = {
     _name: "rss",
     _attrs: {
       "xmlns:itunes": "http://www.itunes.com/dtds/podcast-1.0.dtd",
@@ -15,33 +52,35 @@ const feed = toXML(
     _content: {
       channel: [
         {
-          title: "Title"
+          title: "NextJS GraphCMS Podcast Starter"
         },
         {
-          link: "google.com"
+          link: "https://nextjs-graphcms-podcast-starter.now.sh/"
         },
         {
           language: "en-us"
         },
         {
-          copyright: "Copyright 2011"
+          copyright: `Copyright ${new Date().getFullYear()}`
         },
         {
-          "itunes:subtitle": "Subtitle"
+          "itunes:subtitle": "The podcast or people who make content."
         },
         {
-          "itunes:author": "Author"
+          "itunes:author": "GraphCMS"
         },
         {
-          "itunes:summary": "Summary"
+          "itunes:summary":
+            "For the developer crowd that creates content technology and works with content technology."
         },
         {
-          description: "Description"
+          description:
+            "For the developer crowd that creates content technology and works with content technology."
         },
         {
           "itunes:owner": {
-            "itunes:name": "Name",
-            "itunes:email": "Email"
+            "itunes:name": "GraphCMS",
+            "itunes:email": "marketing@graphcms.com"
           }
         },
         {
@@ -65,97 +104,53 @@ const feed = toXML(
         {
           _name: "itunes:category",
           _attrs: {
-            text: "TV &amp; Film"
+            text: "Tech News"
           }
-        },
-        {
-          item: [
-            {
-              title: "Podcast Title"
-            },
-            {
-              "itunes:author": "Author"
-            },
-            {
-              "itunes:subtitle": "Subtitle"
-            },
-            {
-              "itunes:summary": "Summary"
-            },
-            {
-              "itunes:image": "image.jpg"
-            },
-            {
-              _name: "enclosure",
-              _attrs: {
-                url: "http://example.com/podcast.m4a",
-                length: "8727310",
-                type: "audio/x-m4a"
-              }
-            },
-            {
-              guid: "http://example.com/archive/aae20050615.m4a"
-            },
-            {
-              pubDate: "Wed, 15 Jun 2011 19:00:00 GMT"
-            },
-            {
-              "itunes:duration": "7:04"
-            },
-            {
-              "itunes:keywords": "salt, pepper, shaker, exciting"
-            }
-          ]
-        },
-        {
-          item: [
-            {
-              title: "Podcast2 Title"
-            },
-            {
-              "itunes:author": "Author2"
-            },
-            {
-              "itunes:subtitle": "Subtitle2"
-            },
-            {
-              "itunes:summary": "Summary2"
-            },
-            {
-              "itunes:image": "image2.jpg"
-            },
-            {
-              _name: "enclosure",
-              _attrs: {
-                url: "http://example.com/podcast2.m4a",
-                length: "655555",
-                type: "audio/x-m4a"
-              }
-            },
-            {
-              guid: "http://example.com/archive/aae2.m4a"
-            },
-            {
-              pubDate: "Wed, 15 Jul 2011 19:00:00 GMT"
-            },
-            {
-              "itunes:duration": "11:20"
-            },
-            {
-              "itunes:keywords": "foo, bar"
-            }
-          ]
         }
       ]
     }
-  },
-  xmlOptions
-);
+  };
 
-module.exports = async (req, res) => {
+  const payload = episodes.map(episode => {
+    const obj = {};
+    const item = [];
+
+    item.push({ title: episode.title });
+    item.push({ author: "GraphCMS" });
+    item.push({ subtitle: "By GaphCMS" });
+    item.push({ summary: episode.description });
+    item.push({ "itunes:image": episode.image.url });
+    item.push({
+      _name: "enclosure",
+      _attrs: {
+        url: episode.audioFile.url,
+        length: episode.audioDuration,
+        type: episode.audioFile.mimeType
+      }
+    });
+    item.push({ guid: episode.id + episode.updatedAt });
+    item.push({
+      pubDate: format(
+        new Date(episode.createdAt),
+        "iiiiiii, dd MMM yyyy hh:mm:ss OOO"
+      )
+    });
+    item.push({ "itunes:duration": hms(episode.audioDuration) });
+    item.push({
+      "itunes:keywords": episode.tags.map(tag => tag.name).join(", ")
+    });
+
+    obj.item = item;
+    return obj;
+  });
+
+  feed._content.channel = [...feed._content.channel, ...payload];
+
+  const xmlFeed = toXML(feed, xmlOptions);
+
   try {
     res.setHeader("Content-Type", "text/xml");
-    res.status(200).write(feed.toString());
+    res.status(200).write(xmlFeed.toString());
     res.end();
   } catch ({ status = 500, message }) {
     res.status(status).json({ status, message });
