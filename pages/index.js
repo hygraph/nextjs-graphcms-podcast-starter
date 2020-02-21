@@ -22,7 +22,7 @@ const Home = ({ page, feeds, episodes, sponsorships }) => {
             <MdHero>{page.content}</MdHero>
             <FeedBadges feeds={feeds} />
           </div>
-          <HeroImage />
+          <HeroImage image={page.image} />
         </div>
       </div>
       <Episodes episodes={episodes} sponsorships={sponsorships} />
@@ -38,6 +38,9 @@ export async function unstable_getStaticProps(context) {
         label: $label
     }) {
         content
+        image {
+          url
+        }
         }
     sponsorships(where: {
       NOT: {

@@ -34,7 +34,7 @@ const MenuBlock = ({ menuIsOpen }) => {
   const links = [
     { href: "/", label: "Episodes" },
     { href: "/about", label: "About" },
-    { href: "/", label: "Newsletter" },
+    { href: "/newsletter", label: "Newsletter" },
     { href: "/resources", label: "Resources" }
   ].map(link => ({
     ...link,
