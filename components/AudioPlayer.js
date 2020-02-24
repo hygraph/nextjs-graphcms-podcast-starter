@@ -26,7 +26,7 @@ const playerComponents = {
 
 const AudioPlayer = () => {
   const {
-    state: { playing, episode },
+    state: { playing, interacted, episode },
     dispatch
   } = useContext(PlayerContext);
 
@@ -84,7 +84,7 @@ const AudioPlayer = () => {
         <audio
           ref={player}
           muted
-          src={trackLoaded ? episode.audioFile.url : null}
+          src={interacted ? episode.audioFile.url : null}
         ></audio>
         <div className="flex items-center px-2 py-2 mt-1 text-gray-100 md:m-1 md:px-8 md:py-8 md:rounded-full bg-darkgray-900 group">
           <button onClick={togglePlay}>

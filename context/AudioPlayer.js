@@ -7,7 +7,8 @@ const PlayerSubscriber = PlayerContext.Subscriber;
 
 const initialState = {
   episode: null,
-  playing: false
+  playing: false,
+  interacted: false
 };
 
 const reducer = (state, action) => {
@@ -15,9 +16,13 @@ const reducer = (state, action) => {
     case "setEpisode":
       return { ...state, episode: action.payload };
     case "play":
-      return { ...state, playing: true };
+      return { ...state, ...{ playing: true, interacted: true } };
     case "playEpisode":
-      return { ...state, playing: true, episode: action.payload };
+      return {
+        ...state,
+        ...{ playing: true, interacted: true },
+        episode: action.payload
+      };
     case "pause":
       return { ...state, playing: false };
     default:
