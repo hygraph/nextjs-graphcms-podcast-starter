@@ -2,7 +2,7 @@
 
 > Minimalist podcast website built with GraphCMS, NextJs, Now and Twillio Sendgrid.
 
-[Read more](https://graphcms.com/blog/)
+[Read more](https://graphcms.com/blog/build-a-podcast-with-graphcms-and-the-serverless-stack)
 
 ## The stack
 
