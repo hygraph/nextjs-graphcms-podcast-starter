@@ -41,7 +41,7 @@ First, you will need accounts at GraphCMS, Sendgrid and Now.
 git clone git@github.com:github.com/GraphCMS/nextjs-graphcms-podcast-starter.git
 cd nextjs-graphcms-podcast-starter
 yarn # npm install
-cp .env.buld.sample .env.build
+cp .env.build.sample .env.build
 cp .env.sample .env
 ```
 
