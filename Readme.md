@@ -10,7 +10,7 @@ Podcasts are a great way to get start an indie movement, build a loyal user base
 
 - **[GraphCMS](https://graphcms.com)**: Manages the shows, subscribers and newsletters.
 - **[Next](https://nextjs.org/)**: Acts as a powerful framework that lets us query for live data and use serverless functions in Now.
-- **[Now](https://zeit.co/home)**: A static host that also supports Lambda functions where we handle our subscriptions, unsubscribes and new RSS generation.
+- **[Vercel](https://vercel.com/)**: A static host that also supports Lambda functions where we handle our subscriptions, unsubscribes and new RSS generation.
 - **[Sendgrid](https://sendgrid.com)**: Sending notification emails for confirmation.
 
 ## How it works
@@ -45,7 +45,7 @@ cp .env.buld.sample .env.build
 cp .env.sample .env
 ```
 
-Install the [Now-CLI](https://zeit.co/download)
+Install the [Vercel-CLI](https://vercel.com/download)
 
 ### 2. Create your project on GraphCMS
 
@@ -63,7 +63,7 @@ Add your own domain for the production version of your application in the `now.c
 ⚠️ _You'll need to add your own domain for this step, and you will need to deploy to Now first to do that._
 
 **Secrets**
-Now keeps a strict wall of separation between your project `env` an your lambda `env` - called a `secret`. You can read more about them and the philosophy of separation as well as how to add them [here](https://zeit.co/docs/now-cli#commands/secrets)
+Now keeps a strict wall of separation between your project `env` an your lambda `env` - called a `secret`. You can read more about them and the philosophy of separation as well as how to add them [here](https://vercel.com/docs/environment-variables)
 
 You'll need to add the following secrets, which you should already have filled out in your `envs`.
 
