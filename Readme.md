@@ -1,6 +1,6 @@
 # GraphCMS Podcast Demo
 
-> Minimalist podcast website built with GraphCMS, NextJs, Now and Twillio Sendgrid.
+> Minimalist podcast website built with GraphCMS, Next.js, Vercel, and Twillio Sendgrid.
 
 [Read more](https://graphcms.com/blog/build-a-podcast-with-graphcms-and-the-serverless-stack)
 
@@ -9,7 +9,7 @@
 Podcasts are a great way to get start an indie movement, build a loyal user base or simply get your message out. But many times, the "off the shelf" solutions are slightly overly simplistic, are difficult to customize or suffer from being drowned out on centralized platforms. Using a headless CMS, you can create a completely unique experience, tailored to your exact needs.
 
 - **[GraphCMS](https://graphcms.com)**: Manages the shows, subscribers and newsletters.
-- **[Next](https://nextjs.org/)**: Acts as a powerful framework that lets us query for live data and use serverless functions in Now.
+- **[Next.js](https://nextjs.org/)**: Acts as a powerful framework that lets us query for live data and use serverless functions in Now.
 - **[Vercel](https://vercel.com/)**: A static host that also supports Lambda functions where we handle our subscriptions, unsubscribes and new RSS generation.
 - **[Sendgrid](https://sendgrid.com)**: Sending notification emails for confirmation.
 
@@ -17,7 +17,7 @@ Podcasts are a great way to get start an indie movement, build a loyal user base
 
 1. GraphCMS will house our entire content architecture. We will discuss the architecture in further detail at the connected blog post. The rough structure (though not hierarchial) looks like this: Episodes -> (Sponsors | Audio | Hosts | Guests) | Subscribers | Feeds | Sponsors
 
-2. Next will power our application where we fetch content from GraphCMS (through a GraphQL proxy that authenticates our GraphCMS endpoint, hosted locally in a lambda function).
+2. Next.js will power our application where we fetch content from GraphCMS (through a GraphQL proxy that authenticates our GraphCMS endpoint, hosted locally in a lambda function).
 
 3. The "Subscribe/Unsubscribe" function is handled server-side in a lambda, executed by now. This will sign a user up to be notified of new episodes.
 
@@ -60,10 +60,10 @@ Add the necessary variables to `.env` and `.env.build` files.
 
 **Deployment URLS**
 Add your own domain for the production version of your application in the `now.config.js` file at line 17.
-⚠️ _You'll need to add your own domain for this step, and you will need to deploy to Now first to do that._
+⚠️ _You'll need to add your own domain for this step, and you will need to deploy to Vercel first to do that._
 
 **Secrets**
-Now keeps a strict wall of separation between your project `env` an your lambda `env` - called a `secret`. You can read more about them and the philosophy of separation as well as how to add them [here](https://vercel.com/docs/environment-variables)
+Vercel keeps a strict wall of separation between your project `env` an your lambda `env` - called a `secret`. You can read more about them and the philosophy of separation as well as how to add them [here](https://vercel.com/docs/environment-variables)
 
 You'll need to add the following secrets, which you should already have filled out in your `envs`.
 
@@ -79,12 +79,12 @@ demo-graphcms-podcast-sender-address
 
 ![Webhooks Image](guide/assets/webhooks.png)
 
-⚠️ _You'll need to add your own domain before the `api` path, and you will need to deploy to Now first to do that._
+⚠️ _You'll need to add your own domain before the `api` path, and you will need to deploy to Vercel first to do that._
 
 ### 5. Run locally
 
-Once all dependencies and environment variables are satisfied, you can run Next locally to build in development, including the API endpoints with `now`:
+Once all dependencies and environment variables are satisfied, you can run Next.js locally to build in development, including the API endpoints with `Vercel`:
 
 ```bash
-now dev
+Vercel dev
 ```
